@@ -5,18 +5,24 @@ import {
   Route
 } from "react-router-dom";
 
+import Dashboard from './components/Dashboard';
 import LoginPage from './components/LoginPage';
 
 function App() {
   return (
-    <div className="App" style={{ margin: 'auto', width: '75%', marginTop: '20px' }}>
-      <Router>
-        <Switch>
-          <Route path="/">
-            <LoginPage />
-          </Route>
-        </Switch>
-      </Router>    
+    <div className="App">
+      <div className="ui container">
+        <Router>
+          <Switch>
+            <Route path='/dashboard'>
+              <Dashboard />
+            </Route>
+            <Route path='/'>
+              <LoginPage />
+            </Route>
+          </Switch>
+        </Router> 
+      </div>   
     </div>
   );
 };
