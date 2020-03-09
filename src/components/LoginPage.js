@@ -1,31 +1,22 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { Form, Button } from 'semantic-ui-react'
 
 class LoginPage extends React.Component {
-    render() {
-        return (
-            <Form className="loginPage">
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Register
-                </Button>
-                <Button variant="primary" type="submit" style={{ marginLeft: '20px' }}>
-                    Login
-                </Button>
-            </Form>
-        )
-    }
+  render() {
+    return (
+			<Form>
+        <Form.Field>
+          <label>Username</label>
+          <input placeholder='Username' type='email' />
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <input placeholder='Password' type='password' />
+        </Form.Field>
+        <Button type='submit'>Submit</Button>
+      </Form>
+    )
+  }
 }
 
 export default LoginPage;
