@@ -8,23 +8,25 @@
 
 // Axios documentation:
 // https://www.npmjs.com/package/axios
-const axios = require('axios');
-const userManagementURLs = require('./userManagementURLS');
+import axios from 'axios';
+
+// Wrapper for User Management Service endpoint URLs
+import userManagementURLS from './userManagementURLS';
 
 /**
  * API endpoint to register a SERaaS user account in the 
  * User Management Service.
  */
 function register(username, password) {
-  return axios.post(userManagementURLs.register(), { username, password });
+  return axios.post(userManagementURLS.register(), { username, password });
 };
 
 /**
  * API endpoint to check if the given user credentials match 
  * a SERaaS user account in the User Management Service.
  */
-function login() {
-  return axios.post(userManagementURLs.login(), { username, password });
+function login(username, password) {
+  return axios.post(userManagementURLS.login(), { username, password });
 };
 
 export default {
