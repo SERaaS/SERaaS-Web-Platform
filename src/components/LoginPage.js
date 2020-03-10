@@ -7,21 +7,40 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
+    // Storing extra metadata to check if credentials are valid
     this.state = {
-      username: '',
-      password: ''
+      username: { text: '', valid: false },
+      password: { text: '', valid: false },
     };
   }
 
+  isInvalidCredentials() {
+    return !this.state.username.valid || !this.state.password.valid;
+  };
+
   onChangeUsernameField = (req) => {
-    this.setState({ username: req.target.value });
-  }
+    this.setState({ username: { text: req.target.value, valid: req.target.value !== '' } });
+  };
 
   onChangePasswordField = (req) => {
-    this.setState({ password: req.target.value });
-  }
+    const _password = req.target.value;
+    let validPassword = true;
+
+    // Password's length must be greater than 7
+    if (_password === '' || _password.length < 7) {
+      validPassword = false;
+    }
+
+    this.setState({ password: { text: _password, valid: validPassword } });
+  };
 
   onClickRegisterButton = async () => {
+
+    if (this.isInvalidCredentials()) {
+      alert('Invalid username or password.');
+      return;
+    };
+
     try {
       const user = await APIUtils.register(this.state.username, this.state.password);
 
@@ -29,9 +48,15 @@ class LoginPage extends React.Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   onClickLoginButton = async () => {
+
+    if (this.isInvalidCredentials()) {
+      alert('Invalid username or password.');
+      return;
+    };
+
     try {
       const user = await APIUtils.login(this.state.username, this.state.password);
 
@@ -39,7 +64,7 @@ class LoginPage extends React.Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
   
   render() {
     return (
