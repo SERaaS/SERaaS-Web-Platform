@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import { Form, Button } from 'semantic-ui-react'
 import APIUtils from '../utilities/APIUtils';
 import UserSessionHandler from '../utilities/userSessionHandler';
@@ -59,9 +60,8 @@ class LoginPage extends React.Component {
 
       // Set new user as current user and redirect to dashboard
       UserSessionHandler.setCurrentSession(res.data._id);
+      this.props.history.push('/dashboard');
     } catch (err) {
-      console.log(err);
-
       alert('Error occurred upon registration attempt.');
     }
   };
@@ -81,9 +81,8 @@ class LoginPage extends React.Component {
 
       // Set logged user as current user and redirect to dashboard
       UserSessionHandler.setCurrentSession(res.data._id);
+      this.props.history.push('/dashboard');
     } catch (err) {
-      console.log(err);
-
       alert('Error occurred upon login attempt.');
     }
   };
@@ -112,4 +111,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
