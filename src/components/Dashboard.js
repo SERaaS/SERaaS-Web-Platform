@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
+import UserSessionHandler from '../utilities/userSessionHandler';
 import { AreaChart, defs, linearGradient, stop, XAxis, CartesianGrid, YAxis, Tooltip, Area } from 'recharts';
 
 const PLACEHOLDER_DATA = [
@@ -116,6 +118,15 @@ const PLACEHOLDER_DATA = [
 ];
 
 class Dashboard extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    if (!UserSessionHandler.getCurrentSession()) {
+      this.props.history.push('/');
+    };
+  }
+
   render() {
     return (
       <div className='dashboardContent'>
@@ -169,4 +180,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);
