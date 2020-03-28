@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 
+import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import LoginPage from './components/LoginPage';
 
@@ -17,8 +18,11 @@ function App() {
             <Route path='/dashboard'>
               <Dashboard />
             </Route>
-            <Route path='/'>
+            <Route path='/auth'>
               <LoginPage />
+            </Route>
+            <Route path='/'>
+              <Home />
             </Route>
           </Switch>
         </Router> 
