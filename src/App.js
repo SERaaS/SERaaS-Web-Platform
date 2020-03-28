@@ -8,6 +8,7 @@ import {
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import LoginPage from './components/LoginPage';
+import GettingStarted from './components/GettingStarted';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route path='/auth'>
               <LoginPage />
+            </Route>
+            <Route path='/getstarted'>
+              <GettingStarted />
             </Route>
             <Route path='/'>
               <Home />

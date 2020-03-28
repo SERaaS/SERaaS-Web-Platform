@@ -19,6 +19,11 @@ class Home extends React.Component {
       'login': {
         div: <Menu.Item name='login' onClick={this.onMenuItemClick}>Log In</Menu.Item>,
         route: '/auth'
+      },
+
+      'getStarted': {
+        div: <Menu.Item name='getStarted' onClick={this.onMenuItemClick}>Getting Started</Menu.Item>,
+        route: '/getstarted'
       }
     };
 
@@ -41,7 +46,7 @@ class Home extends React.Component {
   render() {
 
     // Show dashboard or login tab depending on current authenticated status
-    let menuItems = [this.state.loggedIn ? this.MENU_ITEMS.dashboard.div : this.MENU_ITEMS.login.div];
+    let menuItems = [this.MENU_ITEMS.getStarted.div, this.state.loggedIn ? this.MENU_ITEMS.dashboard.div : this.MENU_ITEMS.login.div];
 
     return (
       <div className="loginPage">
