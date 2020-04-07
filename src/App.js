@@ -14,7 +14,8 @@ import GettingStarted from './components/GettingStarted';
 
 function App() {
   return (
-    <div className="App">
+    // Ensure there's empty space at the bottom
+    <div className="App" style={{ marginBottom: "50px" }}>
       <div className="ui container">
         <Router>
           <MenuHeading />
