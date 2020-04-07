@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Light grey highlights for important text */
+.highlight {
+  background-color: lightgrey;
+}
+
+.lowerCase {
+  font-size: x-small;
+}
