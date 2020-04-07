@@ -6,6 +6,7 @@ import { CodeBlock, dracula } from 'react-code-blocks'
 import nodejs from './basic-code-samples/nodejs';
 import python_requests from './basic-code-samples/python-requests';
 
+// Building up the tabular display for Semantic UI React
 const BASIC_CODE_FOR_API_QUERY_TABS = [
   {
     menuItem: 'Node.js',
@@ -39,7 +40,10 @@ const BASIC_CODE_FOR_API_QUERY_TABS = [
 class BasicCodeForAPIQueries extends React.Component {
 
   render() {
+
     return (
+      
+      // Render the built tabs from above
       <Tab panes={BASIC_CODE_FOR_API_QUERY_TABS} />
     );
   };

@@ -11,8 +11,10 @@ class UsingAPITutorial extends React.Component {
         <p>The SERaaS product is the singular API endpoint that any registered SERaaS
         user can have access to. The highlighted input query parameters of the API endpoint are defined below.</p>
 
+        {/* API Endpoint URL */}
         <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">userId</span>/<span class="highlight">emotions</span>/<span class="highlight">period</span></span></h3>
 
+        {/* Input Parameters */}
         <h5>Input Query Parameters</h5>
         <table className="ui celled table">
           <thead className="">
@@ -45,6 +47,7 @@ class UsingAPITutorial extends React.Component {
           </tbody>
         </table>
 
+        {/* Output Body */}
         <h5>Output Body</h5>
         <p>Note that the output body is a JSON object. It is an array of an emotion objects. A single emotion object is defined below.</p>
 

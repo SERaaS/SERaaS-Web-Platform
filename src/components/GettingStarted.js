@@ -12,6 +12,7 @@ class GettingStarted extends React.Component {
     super(props);
 
     this.state = {
+      // What to show for the API endpoint descriptor
       userId: UserSessionHandler.getCurrentSession() || 'your-own-unique-user-ID-here'
     };
   };
@@ -27,6 +28,7 @@ class GettingStarted extends React.Component {
 
           <main className="mainContent">
             
+            {/* Diagram of SERaaS Process */}
             <br /><div className="ui steps">
               <div className="active step">
                 <i aria-hidden="true" className="upload icon"></i>
@@ -48,6 +50,7 @@ class GettingStarted extends React.Component {
               </div>
             </div>
 
+            {/* How a user uses the API */}
             <div className="usingAPI">
               <div className="ui vertical segment">
                 <h3>Using the API</h3>
@@ -58,6 +61,7 @@ class GettingStarted extends React.Component {
               </div>
             </div>
 
+            {/* Example code for using the API */}
             <div className="apiQueryCode">
               <div className="ui vertical segment">
                 <h3>Basic Code for API Query</h3>
@@ -68,6 +72,7 @@ class GettingStarted extends React.Component {
               </div>
             </div>
 
+            {/* Make a sample API call from the Web Platform */}
             <div className="sampleAPICall">
               <div className="ui vertical segment">
                 <h3>Make Sample API Call</h3>
