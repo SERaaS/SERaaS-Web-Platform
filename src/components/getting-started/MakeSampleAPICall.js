@@ -1,6 +1,8 @@
 import React from 'react';
 import APIUtils from '../../utilities/APIUtils';
+
 import { Dropdown, Progress } from 'semantic-ui-react'
+import EmotionPlot from '../reusable/EmotionPlot';
 
 class MakeSampleAPICall extends React.Component {
 
@@ -78,7 +80,7 @@ class MakeSampleAPICall extends React.Component {
     // Making the API call
     return APIUtils.query(audioFile, this.props.userId, APICallInputParameters.selectedEmotions, specifiedPeriod)
     .then(function(res) {
-      temp.setState({ doingAPICall: false, didAPICall: true, APICallOutputBody: res.data, selectedEmotionToPlot: APICallInputParameters.selectedEmotions[0] });
+      temp.setState({ doingAPICall: false, didAPICall: true, APICallOutputBody: res.data.emotions, selectedEmotionToPlot: APICallInputParameters.selectedEmotions[0] });
       clearInterval(progressBarInterval);
     })
     .catch(function(err) {
@@ -107,7 +109,7 @@ class MakeSampleAPICall extends React.Component {
 
   render() {
 
-    const { APICallInputParameters, doingAPICall, percentageProgressOfAPICall, didAPICall, selectedEmotionToPlot } = this.state,
+    const { APICallInputParameters, doingAPICall, percentageProgressOfAPICall, didAPICall, APICallOutputBody, selectedEmotionToPlot } = this.state,
       selectedEmotions = APICallInputParameters.selectedEmotions;
     let selectedEmotionsString = selectedEmotions.length === 0 ? "all" : selectedEmotions.join(),
       plotableEmotions = this.getPlotableEmotions(selectedEmotions);
@@ -167,6 +169,8 @@ class MakeSampleAPICall extends React.Component {
               onChange={this.onEmotionsDropdownChange}
               defaultValue={selectedEmotionToPlot}
             />
+
+            <EmotionPlot emotion={selectedEmotionToPlot} outputBody={APICallOutputBody} />
           </div>
         }
       </div>
