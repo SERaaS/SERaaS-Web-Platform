@@ -72,6 +72,9 @@ class MakeSampleAPICall extends React.Component {
 
   render() {
 
+    const { APICallInputParameters } = this.state;
+    let selectedEmotions = APICallInputParameters.selectedEmotions.length === 0 ? "all" : APICallInputParameters.selectedEmotions.join();
+
     // TODO: Display results in a graph showcasing the change of emotions overtime
 
     return (
@@ -79,7 +82,7 @@ class MakeSampleAPICall extends React.Component {
         <form onSubmit={this.onFormButtonClick} className="ui form">
 
           {/* API Endpoint URL */}  
-          <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">{this.props.userId}</span>/<span class="highlight">emotions</span>/<span class="highlight">period</span></span></h3>
+          <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">{this.props.userId}</span>/<span class="highlight">{selectedEmotions}</span>/<span class="highlight">{APICallInputParameters.specifiedPeriod}</span></span></h3>
 
           <div className="fields">
             <div className="eight wide disabled field">
