@@ -170,7 +170,7 @@ class MakeSampleAPICall extends React.Component {
               defaultValue={selectedEmotionToPlot}
             />
 
-            <EmotionPlot emotion={selectedEmotionToPlot} outputBody={APICallOutputBody} />
+            <EmotionPlot emotion={selectedEmotionToPlot} outputBody={APICallOutputBody} specifiedPeriod={APICallInputParameters.specifiedPeriod != 0} />
           </div>
         }
       </div>
