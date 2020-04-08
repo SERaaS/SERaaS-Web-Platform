@@ -1,6 +1,6 @@
 import React from 'react';
 import APIUtils from '../../utilities/APIUtils';
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Progress } from 'semantic-ui-react'
 
 class MakeSampleAPICall extends React.Component {
 
@@ -8,7 +8,6 @@ class MakeSampleAPICall extends React.Component {
     super(props);
 
     this.defaultSelectedEmotion = "all";
-
     this.defaultAPICallInputParameters = {
       selectedEmotions: [ this.defaultSelectedEmotion ],
       specifiedPeriod: 0
@@ -22,6 +21,8 @@ class MakeSampleAPICall extends React.Component {
 
       // Storing associated input params for sample API call
       APICallInputParameters: this.defaultAPICallInputParameters,
+      doingAPICall: false,
+      percentageProgressOfAPICall: 0,
 
       // User can only make API call once per refresh
       didAPICall: false,
@@ -65,12 +66,23 @@ class MakeSampleAPICall extends React.Component {
     // Required for accessing "this" functions after API call
     const temp = this;
 
+    // Continuously updating the progress bar percentage
+    temp.setState({ doingAPICall: true });
+    const progressBarInterval = setInterval(function() {
+      // Continously move up till 95%
+      if (temp.state.percentageProgressOfAPICall < 95) {
+        temp.setState({ percentageProgressOfAPICall: temp.state.percentageProgressOfAPICall += 3 });
+      };
+    }, 100);
+
+    // Making the API call
     return APIUtils.query(audioFile, this.props.userId, APICallInputParameters.selectedEmotions, specifiedPeriod)
     .then(function(res) {
-      temp.setState({ didAPICall: true, APICallOutputBody: res.data, selectedEmotionToPlot: APICallInputParameters.selectedEmotions[0] });
+      temp.setState({ doingAPICall: false, didAPICall: true, APICallOutputBody: res.data, selectedEmotionToPlot: APICallInputParameters.selectedEmotions[0] });
+      clearInterval(progressBarInterval);
     })
     .catch(function(err) {
-      temp.setState({ didAPICall: true, APICallOutputBody: { error: err } });
+      temp.setState({ doingAPICall: false, didAPICall: false, APICallOutputBody: { error: err } });
     });
   };
 
@@ -95,7 +107,7 @@ class MakeSampleAPICall extends React.Component {
 
   render() {
 
-    const { APICallInputParameters, didAPICall, selectedEmotionToPlot } = this.state,
+    const { APICallInputParameters, doingAPICall, percentageProgressOfAPICall, didAPICall, selectedEmotionToPlot } = this.state,
       selectedEmotions = APICallInputParameters.selectedEmotions;
     let selectedEmotionsString = selectedEmotions.length === 0 ? "all" : selectedEmotions.join(),
       plotableEmotions = this.getPlotableEmotions(selectedEmotions);
@@ -131,11 +143,21 @@ class MakeSampleAPICall extends React.Component {
             <br /><div className="ui input">
               <input type="file" onChange={this.onInputFileChange} />
             </div>
-            <br /><br /><button className="ui primary button">Make Sample API Call</button>
+            {
+              !doingAPICall ?
+
+              <div><br /><br /><button className="ui primary button">Make Sample API Call</button></div>
+
+              :
+
+              // Show progress bar if in the middle of the API call
+              <div><br /><br /><Progress percent={percentageProgressOfAPICall} autoSuccess /></div>
+            }
           </form>
 
           :
 
+          // Display plot of output body if API call made
           <div>
             <br /><h5>Select Emotion to Plot</h5>
             <Dropdown
