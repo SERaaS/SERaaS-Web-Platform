@@ -80,7 +80,7 @@ class MakeSampleAPICall extends React.Component {
     // Making the API call
     return APIUtils.query(audioFile, this.props.userId, APICallInputParameters.selectedEmotions, specifiedPeriod)
     .then(function(res) {
-      temp.setState({ doingAPICall: false, didAPICall: true, APICallOutputBody: res.data.emotions, selectedEmotionToPlot: APICallInputParameters.selectedEmotions[0] });
+      temp.setState({ doingAPICall: false, didAPICall: true, APICallOutputBody: res.data.emotions, selectedEmotionToPlot: res.data.emotions[0].emotion });
       clearInterval(progressBarInterval);
     })
     .catch(function(err) {
