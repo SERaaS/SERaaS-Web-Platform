@@ -10,8 +10,16 @@
 // https://www.npmjs.com/package/axios
 import axios from 'axios';
 
-// Wrapper for User Management Service endpoint URLs
+// Wrapper for main API and User Management Service endpoint URLs
+import apiManagementURLS from './apiManagementURLS';
 import userManagementURLS from './userManagementURLS';
+
+/**
+ * API endpoint to output emotions from a given audio file.
+ */
+function query(audioFile, userId, emotions, period) {
+  return axios.post(apiManagementURLS.query(userId, emotions, period), audioFile, { headers: { 'Content-Type': 'multipart/form-data' } });
+};
 
 /**
  * API endpoint to register a SERaaS user account in the 
@@ -30,6 +38,7 @@ function login(username, password) {
 };
 
 export default {
+  query: query,
   register: register,
   login: login
 };
