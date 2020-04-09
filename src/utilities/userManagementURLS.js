@@ -27,14 +27,23 @@ function login() {
 
 /**
  * API endpoint to get a list of all of the recent API Calls'
- * timestamps made by the user in the User Management Service.
+ * timestamps made by the user from the User Management Service.
  */
 function getAPICallTimestamps(userId) {
   return `http://${HOST}:${PORT}/authentication/data/${userId}`;
 };
 
+/**
+ * API endpoint to get an individual API Call timestamp's metadata
+ * made by the user from the User Management Service.
+ */
+function getAPICallTimestampData(userId, timestampId) {
+  return `http://${HOST}:${PORT}/authentication/data/${userId}/${timestampId}`;
+};
+
 export default {
   register: register,
   login: login,
-  getAPICallTimestamps: getAPICallTimestamps
+  getAPICallTimestamps: getAPICallTimestamps,
+  getAPICallTimestampData: getAPICallTimestampData
 };
