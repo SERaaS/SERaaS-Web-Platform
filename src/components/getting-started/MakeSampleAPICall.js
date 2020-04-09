@@ -53,8 +53,11 @@ class MakeSampleAPICall extends React.Component {
   onFormButtonClick = (event) => {
     event.preventDefault();
 
-    // Cannot make API call more than once
     if (this.state.didAPICall) {
+      alert("You cannot make another sample API call.")
+      return;
+    } else if (!this.props.loggedIn) {
+      alert("You must be logged in to make a sample API call.");
       return;
     };
 
