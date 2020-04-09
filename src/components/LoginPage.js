@@ -105,8 +105,8 @@ class LoginPage extends React.Component {
                 <label>Password</label>
                 <input placeholder='Password' type='password' onChange={this.onChangePasswordField} />
               </Form.Field>
-              <Button type='submit' color='blue' onClick={this.onClickRegisterButton}>Register</Button>
-              <Button type='submit' color='blue' onClick={this.onClickLoginButton}>Login</Button>
+              <Button type='submit' color='blue' onClick={this.onClickRegisterButton}><i className="star icon"></i>Register</Button>
+              <Button type='submit' color='blue' onClick={this.onClickLoginButton}><i className="level up icon"></i>Login</Button>
             </Form>
           </main>
         </div>

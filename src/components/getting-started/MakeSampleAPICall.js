@@ -154,7 +154,10 @@ class MakeSampleAPICall extends React.Component {
               !doingAPICall ?
 
               <div>
-                <br /><br /><button className="ui primary button">Make Sample API Call</button>
+                <br /><br /><button className="ui primary button">
+                  <i className="forward icon"></i>
+                  Make Sample API Call
+                </button>
               </div>
 
               :

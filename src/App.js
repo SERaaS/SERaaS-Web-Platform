@@ -17,6 +17,9 @@ function App() {
   return (
     // Ensure there's empty space at the bottom
     <div className="App" style={{ marginBottom: "50px" }}>
+      <div className="backgroundImage">
+      </div>
+
       <div className="ui container">
         <Router>
           <MenuHeading />

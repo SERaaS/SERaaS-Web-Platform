@@ -17,7 +17,7 @@ class MenuNavBar extends React.Component {
       },
     
       'login': {
-        div: <Menu.Item name='login' key={2} onClick={this.onMenuItemClick}>Log In</Menu.Item>,
+        div: <Menu.Item name='login' key={2} onClick={this.onMenuItemClick}><i className="level up icon"></i>Log In</Menu.Item>,
         route: '/auth'
       },
 
@@ -27,7 +27,7 @@ class MenuNavBar extends React.Component {
       },
 
       'logout': {
-        div: <Menu.Item name='logout' key={4} onClick={this.onMenuItemClick}>Log Out</Menu.Item>,
+        div: <Menu.Item name='logout' key={4} onClick={this.onMenuItemClick}><i className="log out icon"></i>Log Out</Menu.Item>,
         route: '/auth'
       }
     };
