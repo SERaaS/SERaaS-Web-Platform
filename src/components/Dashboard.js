@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import UserSessionHandler from '../utilities/userSessionHandler';
+import APIUtils from '../utilities/APIUtils';
+
 import { AreaChart, defs, linearGradient, stop, XAxis, CartesianGrid, YAxis, Tooltip, Area } from 'recharts';
 
 const PLACEHOLDER_DATA = [
@@ -122,10 +124,32 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
-    if (!UserSessionHandler.getCurrentSession()) {
+    const userSession = UserSessionHandler.getCurrentSession();
+    
+    // User cannot access dashboard if not logged in
+    if (!userSession) {
       this.props.history.push('/');
     };
-  }
+
+    this.state = {
+      userId: userSession,
+
+      // Storing the most recent API call timestamps to visualise them
+      APICallTimestamps: []
+    };
+  };
+
+  /**
+   * Loading in all user's API call timestamp data upon page load.
+   */
+  componentDidMount() {
+    const temp = this;
+
+    return APIUtils.getAPICallTimestamps(this.state.userId)
+    .then(function(res) {
+      temp.setState({ APICallTimestamps: res.data });
+    });
+  };
 
   render() {
     return (
