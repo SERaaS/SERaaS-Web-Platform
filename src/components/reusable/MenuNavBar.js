@@ -12,22 +12,22 @@ class MenuNavBar extends React.Component {
 
     this.MENU_ITEMS = {
       'dashboard': {
-        div: <Menu.Item name='dashboard' onClick={this.onMenuItemClick}>Dashboard</Menu.Item>,
+        div: <Menu.Item name='dashboard' key={1} onClick={this.onMenuItemClick}>Dashboard</Menu.Item>,
         route: '/dashboard'
       },
     
       'login': {
-        div: <Menu.Item name='login' onClick={this.onMenuItemClick}>Log In</Menu.Item>,
+        div: <Menu.Item name='login' key={2} onClick={this.onMenuItemClick}>Log In</Menu.Item>,
         route: '/auth'
       },
 
       'getStarted': {
-        div: <Menu.Item name='getStarted' onClick={this.onMenuItemClick}>Getting Started</Menu.Item>,
+        div: <Menu.Item name='getStarted' key={3} onClick={this.onMenuItemClick}>Getting Started</Menu.Item>,
         route: '/getstarted'
       },
 
       'logout': {
-        div: <Menu.Item name='logout' onClick={this.onMenuItemClick}>Log Out</Menu.Item>,
+        div: <Menu.Item name='logout' key={4} onClick={this.onMenuItemClick}>Log Out</Menu.Item>,
         route: '/auth'
       }
     };

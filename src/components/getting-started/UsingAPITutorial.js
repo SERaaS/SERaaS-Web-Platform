@@ -12,7 +12,7 @@ class UsingAPITutorial extends React.Component {
         user can have access to. The highlighted input query parameters of the API endpoint are defined below.</p>
 
         {/* API Endpoint URL */}
-        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">userId</span>/<span class="highlight">emotions</span>/<span class="highlight">period</span></span></h3>
+        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">userId</span>/<span className="highlight">emotions</span>/<span className="highlight">period</span></span></h3>
 
         {/* Input Parameters */}
         <h5>Input Query Parameters</h5>

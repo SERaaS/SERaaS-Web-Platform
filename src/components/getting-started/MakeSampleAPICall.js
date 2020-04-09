@@ -121,7 +121,7 @@ class MakeSampleAPICall extends React.Component {
     return (
       <div>
         {/* API Endpoint URL */}  
-        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">{this.props.userId}</span>/<span class="highlight">{selectedEmotionsString}</span>/<span class="highlight">{APICallInputParameters.specifiedPeriod}</span></span></h3>
+        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">{this.props.userId}</span>/<span className="highlight">{selectedEmotionsString}</span>/<span className="highlight">{APICallInputParameters.specifiedPeriod}</span></span></h3>
 
         {
           !didAPICall ? 
