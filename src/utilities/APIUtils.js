@@ -37,8 +37,26 @@ function login(username, password) {
   return axios.post(userManagementURLS.login(), { username, password });
 };
 
+/**
+ * API endpoint to get a list of all of the recent API Calls'
+ * timestamps made by the user in the User Management Service.
+ */
+function getAPICallTimestamps(userId) {
+  return axios.get(userManagementURLS.getAPICallTimestamps(userId));
+};
+
+/**
+ * API endpoint to get an individual API Call timestamp's metadata
+ * made by the user from the User Management Service.
+ */
+function getAPICallTimestampData(userId, timestampId) {
+  return axios.get(userManagementURLS.getAPICallTimestampData(userId, timestampId));
+};
+
 export default {
   query: query,
   register: register,
-  login: login
+  login: login,
+  getAPICallTimestamps: getAPICallTimestamps,
+  getAPICallTimestampData: getAPICallTimestampData
 };

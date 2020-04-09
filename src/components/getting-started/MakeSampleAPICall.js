@@ -28,7 +28,6 @@ class MakeSampleAPICall extends React.Component {
 
       // User can only make API call once per refresh
       didAPICall: false,
-      invalidAPICall: false,
       APICallOutputBody: null,
       selectedEmotionToPlot: this.EMOTIONS_AVAILABLE[0]
     };
@@ -54,8 +53,11 @@ class MakeSampleAPICall extends React.Component {
   onFormButtonClick = (event) => {
     event.preventDefault();
 
-    const { didAPICall } = this.state;
-    if (didAPICall) {
+    if (this.state.didAPICall) {
+      alert("You cannot make another sample API call.")
+      return;
+    } else if (!this.props.loggedIn) {
+      alert("You must be logged in to make a sample API call.");
       return;
     };
 
@@ -64,7 +66,7 @@ class MakeSampleAPICall extends React.Component {
 
     const { APICallInputParameters } = this.state;
     let specifiedPeriod = APICallInputParameters.specifiedPeriod;
-    specifiedPeriod = specifiedPeriod  === 0 ? null : specifiedPeriod
+    specifiedPeriod = specifiedPeriod  === 0 ? null : specifiedPeriod;
 
     // Required for accessing "this" functions after API call
     const temp = this;
@@ -81,11 +83,12 @@ class MakeSampleAPICall extends React.Component {
     // Making the API call
     return APIUtils.query(audioFile, this.props.userId, APICallInputParameters.selectedEmotions, specifiedPeriod)
     .then(function(res) {
-      temp.setState({ doingAPICall: false, didAPICall: true, invalidAPICall: false, APICallOutputBody: res.data.emotions, selectedEmotionToPlot: res.data.emotions[0].emotion });
+      temp.setState({ doingAPICall: false, didAPICall: true, APICallOutputBody: res.data.emotions, selectedEmotionToPlot: res.data.emotions[0].emotion });
       clearInterval(progressBarInterval);
     })
     .catch(function(err) {
-      temp.setState({ doingAPICall: false, didAPICall: false, invalidAPICall: true });
+      alert("Error occurred upon sample API call attempt.");
+      temp.setState({ doingAPICall: false, didAPICall: false });
     });
   };
 
@@ -110,7 +113,7 @@ class MakeSampleAPICall extends React.Component {
 
   render() {
 
-    const { APICallInputParameters, doingAPICall, percentageProgressOfAPICall, didAPICall, invalidAPICall, APICallOutputBody, selectedEmotionToPlot } = this.state,
+    const { APICallInputParameters, doingAPICall, percentageProgressOfAPICall, didAPICall, APICallOutputBody, selectedEmotionToPlot } = this.state,
       selectedEmotions = APICallInputParameters.selectedEmotions;
     let selectedEmotionsString = selectedEmotions.length === 0 ? "all" : selectedEmotions.join(),
       plotableEmotions = this.getPlotableEmotions(selectedEmotions);
@@ -118,7 +121,7 @@ class MakeSampleAPICall extends React.Component {
     return (
       <div>
         {/* API Endpoint URL */}  
-        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">{this.props.userId}</span>/<span class="highlight">{selectedEmotionsString}</span>/<span class="highlight">{APICallInputParameters.specifiedPeriod}</span></span></h3>
+        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">{this.props.userId}</span>/<span className="highlight">{selectedEmotionsString}</span>/<span className="highlight">{APICallInputParameters.specifiedPeriod}</span></span></h3>
 
         {
           !didAPICall ? 
@@ -151,9 +154,10 @@ class MakeSampleAPICall extends React.Component {
               !doingAPICall ?
 
               <div>
-                {/* Notify invalid API call ifso */}
-                <br /><Message hidden={!invalidAPICall} header='Woops, an error occurred!' list={[ "The API doesn't seem to be working right now.. Try again later?", ]} />
-                <br /><br /><button className="ui primary button">Make Sample API Call</button>
+                <br /><br /><button className="ui primary button">
+                  <i className="forward icon"></i>
+                  Make Sample API Call
+                </button>
               </div>
 
               :

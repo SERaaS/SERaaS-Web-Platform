@@ -12,7 +12,7 @@ class UsingAPITutorial extends React.Component {
         user can have access to. The highlighted input query parameters of the API endpoint are defined below.</p>
 
         {/* API Endpoint URL */}
-        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">userId</span>/<span class="highlight">emotions</span>/<span class="highlight">period</span></span></h3>
+        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">userId</span>/<span className="highlight">emotions</span>/<span className="highlight">period</span></span></h3>
 
         {/* Input Parameters */}
         <h5>Input Query Parameters</h5>
@@ -34,7 +34,7 @@ class UsingAPITutorial extends React.Component {
             </tr>
             <tr className="">
               <td className="">emotions</td>
-              <td className="">These are the list of emotions you would like to examine from your audio file<br /><span className="lowerCase">e.g. <b>TODO_ADD_URL_HERE/analyse/{userId}/angry</b> would output just the angry emotion statistic.</span></td>
+              <td className="">These are the list of emotions you would like to examine from your audio file<br /><span className="lowerCase">e.g. <b>TODO_ADD_URL_HERE/analyse/{userId}/angry,happy</b> would output both the angry and happy emotion statistics.</span></td>
               <td>Yes</td>
               <td className="">all, neutral, calm, happy, sad, angry, fearful, disgusted, surprised<br /><span className="lowerCase"><b>String</b></span></td>
             </tr>

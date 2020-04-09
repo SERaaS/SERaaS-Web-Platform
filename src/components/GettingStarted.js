@@ -11,9 +11,12 @@ class GettingStarted extends React.Component {
   constructor(props) {
     super(props);
 
+    const userSession = UserSessionHandler.getCurrentSession();
+
     this.state = {
       // What to show for the API endpoint descriptor
-      userId: UserSessionHandler.getCurrentSession() || 'your-own-unique-user-ID-here'
+      userId: userSession || 'your-own-unique-user-ID-here',
+      loggedIn: userSession != null
     };
   };
 
@@ -79,7 +82,7 @@ class GettingStarted extends React.Component {
               </div>
 
               <div className="ui basic segment">
-                <MakeSampleAPICall userId={this.state.userId} />
+                <MakeSampleAPICall userId={this.state.userId} loggedIn={this.state.loggedIn} />
               </div>
             </div>
           </main>

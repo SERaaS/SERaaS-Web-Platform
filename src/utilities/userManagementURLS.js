@@ -7,13 +7,14 @@
  */
 
 const PORT = 4000;
+const HOST = 'localhost'
 
 /**
  * API endpoint to register a SERaaS user account in the 
  * User Management Service.
  */
 function register() {
-  return `http://localhost:${PORT}/authentication/register`
+  return `http://${HOST}:${PORT}/authentication/register`;
 };
 
 /**
@@ -21,10 +22,28 @@ function register() {
  * a SERaaS user account in the User Management Service.
  */
 function login() {
-  return `http://localhost:${PORT}/authentication/login`
+  return `http://${HOST}:${PORT}/authentication/login`;
+};
+
+/**
+ * API endpoint to get a list of all of the recent API Calls'
+ * timestamps made by the user from the User Management Service.
+ */
+function getAPICallTimestamps(userId) {
+  return `http://${HOST}:${PORT}/authentication/data/${userId}`;
+};
+
+/**
+ * API endpoint to get an individual API Call timestamp's metadata
+ * made by the user from the User Management Service.
+ */
+function getAPICallTimestampData(userId, timestampId) {
+  return `http://${HOST}:${PORT}/authentication/data/${userId}/${timestampId}`;
 };
 
 export default {
   register: register,
-  login: login
+  login: login,
+  getAPICallTimestamps: getAPICallTimestamps,
+  getAPICallTimestampData: getAPICallTimestampData
 };

@@ -7,7 +7,8 @@ import {
 
 import MenuHeading from './components/reusable/MenuHeading';
 import MenuNavBar from './components/reusable/MenuNavBar';
-import Home from './components/Home';
+import Footer from './components/reusable/Footer';
+import NotFound from './components/NotFound';
 import Dashboard from './components/Dashboard';
 import LoginPage from './components/LoginPage';
 import GettingStarted from './components/GettingStarted';
@@ -16,15 +17,15 @@ function App() {
   return (
     // Ensure there's empty space at the bottom
     <div className="App" style={{ marginBottom: "50px" }}>
+      <div className="backgroundImage">
+      </div>
+
       <div className="ui container">
         <Router>
           <MenuHeading />
           <MenuNavBar />
 
           <Switch>
-            <Route path='/dashboard'>
-              <Dashboard />
-            </Route>
             <Route path='/auth'>
               <LoginPage />
             </Route>
@@ -32,9 +33,11 @@ function App() {
               <GettingStarted />
             </Route>
             <Route path='/'>
-              <Home />
+              <Dashboard />
             </Route>
           </Switch>
+
+          <Footer />
         </Router> 
       </div>   
     </div>
