@@ -11,11 +11,6 @@ class MenuNavBar extends React.Component {
     super(props);
 
     this.MENU_ITEMS = {
-      'home': {
-        div: <Menu.Item name='home' onClick={this.onMenuItemClick}>Home</Menu.Item>,
-        route: '/'
-      },
-
       'dashboard': {
         div: <Menu.Item name='dashboard' onClick={this.onMenuItemClick}>Dashboard</Menu.Item>,
         route: '/dashboard'
@@ -75,11 +70,10 @@ class MenuNavBar extends React.Component {
     const { loggedIn } = this.state;
 
     let menuItems = [
-      this.MENU_ITEMS.home.div,
-      this.MENU_ITEMS.getStarted.div,
-
       // Show dashboard or login tab depending on current authenticated status
-      loggedIn ? this.MENU_ITEMS.dashboard.div : this.MENU_ITEMS.login.div
+      loggedIn ? this.MENU_ITEMS.dashboard.div : this.MENU_ITEMS.login.div,
+      
+      this.MENU_ITEMS.getStarted.div
     ];
 
     // Show logout option if logged in
