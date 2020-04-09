@@ -135,7 +135,8 @@ class Dashboard extends React.Component {
       userId: userSession,
 
       // Storing the most recent API call timestamps to visualise them
-      APICallTimestamps: []
+      APICallTimestamps: [],
+      mostRecentAPICall: {}
     };
   };
 
@@ -145,9 +146,14 @@ class Dashboard extends React.Component {
   componentDidMount() {
     const temp = this;
 
-    return APIUtils.getAPICallTimestamps(this.state.userId)
+    return APIUtils.getAPICallTimestamps(temp.state.userId)
     .then(function(res) {
-      temp.setState({ APICallTimestamps: res.data });
+
+      // Getting the most recent API call's metadata
+      return APIUtils.getAPICallTimestampData(temp.state.userId, res.data[res.data.length - 1])
+      .then(function(_res) {
+        temp.setState({ APICallTimestamps: res.data, mostRecentAPICall: _res.data });
+      })
     });
   };
 
