@@ -37,8 +37,17 @@ function login(username, password) {
   return axios.post(userManagementURLS.login(), { username, password });
 };
 
+/**
+ * API endpoint to get a list of all of the recent API Calls'
+ * timestamps made by the user in the User Management Service.
+ */
+function getAPICallTimestamps(userId) {
+  return axios.get(userManagementURLS.getAPICallTimestamps(userId));
+};
+
 export default {
   query: query,
   register: register,
-  login: login
+  login: login,
+  getAPICallTimestamps: getAPICallTimestamps
 };
