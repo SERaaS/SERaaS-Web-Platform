@@ -60,7 +60,7 @@ class LoginPage extends React.Component {
 
       // Set new user as current user and redirect to dashboard
       UserSessionHandler.setCurrentSession(res.data._id);
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     } catch (err) {
       alert('Error occurred upon registration attempt.');
     }
@@ -81,7 +81,7 @@ class LoginPage extends React.Component {
 
       // Set logged user as current user and redirect to dashboard
       UserSessionHandler.setCurrentSession(res.data._id);
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     } catch (err) {
       alert('Error occurred upon login attempt.');
     }

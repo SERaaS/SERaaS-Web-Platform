@@ -13,7 +13,7 @@ class MenuNavBar extends React.Component {
     this.MENU_ITEMS = {
       'dashboard': {
         div: <Menu.Item name='dashboard' key={1} onClick={this.onMenuItemClick}>Dashboard</Menu.Item>,
-        route: '/dashboard'
+        route: '/'
       },
     
       'login': {

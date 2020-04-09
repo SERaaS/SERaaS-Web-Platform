@@ -22,9 +22,6 @@ function App() {
           <MenuNavBar />
 
           <Switch>
-            <Route path='/dashboard'>
-              <Dashboard />
-            </Route>
             <Route path='/auth'>
               <LoginPage />
             </Route>
@@ -32,7 +29,7 @@ function App() {
               <GettingStarted />
             </Route>
             <Route path='/'>
-              <NotFound />
+              <Dashboard />
             </Route>
           </Switch>
         </Router> 
