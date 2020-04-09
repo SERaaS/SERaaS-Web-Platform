@@ -86,26 +86,30 @@ class LoginPage extends React.Component {
       alert('Error occurred upon login attempt.');
     }
   };
-  
+
   render() {
     return (
       <div className="loginPage">
         <div className="ui segment">
-          <h1>Login Page</h1>
-        </div>
+          <div className="ui vertical segment">
+            <h1>Login Page</h1>
+          </div>
 
-        <Form className='ui segment'>
-          <Form.Field>
-            <label>Username</label>
-            <input placeholder='Username' onChange={this.onChangeUsernameField} />
-          </Form.Field>
-          <Form.Field>
-            <label>Password</label>
-            <input placeholder='Password' type='password' onChange={this.onChangePasswordField} />
-          </Form.Field>
-          <Button type='submit' color='blue' onClick={this.onClickRegisterButton}>Register</Button>
-          <Button type='submit' color='blue' onClick={this.onClickLoginButton}>Login</Button>
-        </Form>
+          <main className="mainContent">
+            <br /><Form>
+              <Form.Field>
+                <label>Username</label>
+                <input placeholder='Username' onChange={this.onChangeUsernameField} />
+              </Form.Field>
+              <Form.Field>
+                <label>Password</label>
+                <input placeholder='Password' type='password' onChange={this.onChangePasswordField} />
+              </Form.Field>
+              <Button type='submit' color='blue' onClick={this.onClickRegisterButton}>Register</Button>
+              <Button type='submit' color='blue' onClick={this.onClickLoginButton}>Login</Button>
+            </Form>
+          </main>
+        </div>
       </div>
     )
   }
