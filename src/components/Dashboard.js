@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
 
       // Storing the most recent API call timestamps to visualise them
       APICallTimestamps: [],
-      mostRecentAPICall: {}
+      mostRecentAPICalls: []
     };
   };
 
@@ -28,16 +28,34 @@ class Dashboard extends React.Component {
    * Loading in all user's API call timestamp data upon page load.
    */
   componentDidMount() {
-    const temp = this;
+    const temp = this,
+      MOST_RECENT_API_CALLS_COUNT = 10
 
     return APIUtils.getAPICallTimestamps(temp.state.userId)
     .then(function(res) {
 
-      // Getting the most recent API call's metadata
-      return APIUtils.getAPICallTimestampData(temp.state.userId, res.data[res.data.length - 1])
-      .then(function(_res) {
-        temp.setState({ APICallTimestamps: res.data, mostRecentAPICall: _res.data });
-      })
+      // Returns a list of IDs corresponding to an API call timestamp
+      const _APICallTimestamps = res.data,
+        // Starting the loop from the 10th last index
+        startIndex = _APICallTimestamps.length > 10 ? _APICallTimestamps.length - MOST_RECENT_API_CALLS_COUNT - 1 : 0; 
+      
+      // Retrieve the last 10 API calls' timestamp metadata
+      let promises = [],
+        _mostRecentAPICalls = [];
+      for (let i = startIndex; i < _APICallTimestamps.length; i += 1) {
+        promises.push(
+          APIUtils.getAPICallTimestampData(temp.state.userId, _APICallTimestamps[i])
+          .then(function(_res) {
+            _mostRecentAPICalls.push(_res.data);
+          })
+        )
+      };
+
+      // Once all done, update state !
+      return Promise.all(promises)
+      .then(function() {
+        temp.setState({ APICallTimestamps: _APICallTimestamps, mostRecentAPICalls: _mostRecentAPICalls });
+      });
     });
   };
 
