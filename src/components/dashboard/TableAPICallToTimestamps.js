@@ -33,6 +33,33 @@ class TableAPIToTimestamps extends React.Component {
     };
   };
 
+  /**
+   * Builds the table items to display the list of API calls and their
+   * timestamps.
+   */
+  buildTableAPICallToTimestamps = (temp, mostRecentAPICallTimestampData) => {
+    return mostRecentAPICallTimestampData.map(function(it, i) {
+        
+      // Only show the most recent 5 API calls
+      if (i <= temp.MAX_ITEMS_TO_SHOW) {
+
+        // Retrieve all queried emotions, using Set as there may be duplicate emotions
+        let emotionsQueried = new Set();
+        it.output.forEach(function(emotionObject) {
+          emotionsQueried.add(emotionObject.emotion);
+        });
+
+        return (
+          <tr className="" key={i} >
+            <td className="">{ it.fileName }</td>
+            <td className="">{ Array.from(emotionsQueried).join(", ") }</td>
+            <td className="collapsing right aligned">{ temp.timeSince(new Date(it.dateCreated)) }</td>
+          </tr>
+        );
+      };
+    });
+  };
+
   render() {
 
     const { mostRecentAPICallTimestampData } = this.props,
@@ -40,27 +67,15 @@ class TableAPIToTimestamps extends React.Component {
 
     let tableAPICallToTimestamps = []
     if (mostRecentAPICallTimestampData.length > 0) {
-      tableAPICallToTimestamps = mostRecentAPICallTimestampData.map(function(it, i) {
-        
-        // Only show the most recent 5 API calls
-        if (i <= temp.MAX_ITEMS_TO_SHOW) {
-          return (
-            <tr class="">
-              <td class="">{ it.fileName }</td>
-              <td class=""></td>
-              <td class="collapsing right aligned">{ temp.timeSince(new Date(it.dateCreated)) }</td>
-            </tr>
-          );
-        };
-      });
+      tableAPICallToTimestamps = temp.buildTableAPICallToTimestamps(temp, mostRecentAPICallTimestampData);
     };
 
     return (
-      <table class="ui celled striped table">
-        <thead class="">
-          <tr class=""><th colSpan="3" class="">Recent API Calls</th></tr>
+      <table className="ui celled striped table">
+        <thead className="">
+          <tr className=""><th colSpan="3" className="">Recent API Calls</th></tr>
         </thead>
-        <tbody class="">
+        <tbody className="">
           { tableAPICallToTimestamps }
         </tbody>
       </table>
