@@ -51,7 +51,7 @@ class TableAPIToTimestamps extends React.Component {
 
         return (
           <tr className="" key={i} >
-            <td className="">{ it.fileName }</td>
+            <td className="">{ it._id }</td>
             <td className="">{ Array.from(emotionsQueried).join(", ") }</td>
             <td className="collapsing right aligned">{ temp.timeSince(new Date(it.dateCreated)) }</td>
           </tr>
