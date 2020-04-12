@@ -6,6 +6,7 @@ import APIUtils from '../utilities/APIUtils';
 // UI dedicated components to build up the Dashboard
 import TableAPICallToTimestamps from './dashboard/TableAPICallToTimestamps';
 import TimeSeriesAPICallsPlot from './dashboard/TimeSeriesAPICallsPlot';
+import EmotionBreakdownPlots from './dashboard/EmotionBreakdownPlots';
 
 class Dashboard extends React.Component {
 
@@ -134,7 +135,7 @@ class Dashboard extends React.Component {
               </div>
               <div className="row">
                 <div className="column">
-                  Most recent 10 API calls (selectable via Dropdown) emotion (also selectable via Dropdown) breakdown plots 
+                  <EmotionBreakdownPlots mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
                 </div>
 
                 <div className="column">
