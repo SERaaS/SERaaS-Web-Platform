@@ -5,6 +5,7 @@ import APIUtils from '../utilities/APIUtils';
 
 // UI dedicated components to build up the Dashboard
 import TableAPICallToTimestamps from './dashboard/TableAPICallToTimestamps';
+import TimeSeriesAPICallsPlot from './dashboard/TimeSeriesAPICallsPlot';
 
 class Dashboard extends React.Component {
 
@@ -128,7 +129,7 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div className="column">
-                  Time series plot of API calls made over the day
+                  <TimeSeriesAPICallsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
                 </div>
               </div>
               <div className="row">
