@@ -17,13 +17,13 @@ class TableAPIToTimestamps extends React.Component {
     const now = new Date(),
       secondsPast = (now.getTime() - timeStamp) / 1000;
     if (secondsPast < 60) {
-      return parseInt(secondsPast) + ' seconds ago';
+      return `${parseInt(secondsPast)} seconds ago`;
     }
     if (secondsPast < 3600) {
-      return parseInt(secondsPast / 60) + ' minutes ago';
+      return `${parseInt(secondsPast / 60)} minutes ago`;
     }
     if (secondsPast <= 86400) {
-      return parseInt(secondsPast / 3600) + 'hours ago';
+      return `${parseInt(secondsPast / 3600)} hours ago`;
     }
     if (secondsPast > 86400) {
       const day = timeStamp.getDate(),
