@@ -7,6 +7,7 @@ import APIUtils from '../utilities/APIUtils';
 import TableAPICallToTimestamps from './dashboard/TableAPICallToTimestamps';
 import TimeSeriesAPICallsPlot from './dashboard/TimeSeriesAPICallsPlot';
 import EmotionBreakdownPlots from './dashboard/EmotionBreakdownPlots';
+import TimeSeriesEmotionProbsPlot from './dashboard/TimeSeriesEmotionProbsPlot';
 
 class Dashboard extends React.Component {
 
@@ -29,41 +30,8 @@ class Dashboard extends React.Component {
       APICallTimestamps: [],
       
       // Includes individual API call timestamp metadata
-      mostRecentAPICallTimestampData: [],
-
-      // Most recent emotion probabilities queried over time
-      emotionsOverTime: []
+      mostRecentAPICallTimestampData: []
     };
-  };
-
-  /**
-   * Generate the emotions' probabilities queried over time, from the
-   * most recent API calls.
-   */
-  generateEmotionProbabilitiesOverTime = (mostRecentAPICallTimestampData) => {
-    let emotionsOverTime = {};
-
-    mostRecentAPICallTimestampData.forEach(function(it) {
-      const uniqueEmotions = {};
-      
-      it.output.forEach(function(_it) {
-        if (!uniqueEmotions[_it.emotion]) {
-          uniqueEmotions[_it.emotion] = _it.probability;
-        };
-      });
-
-      for (let emotion in uniqueEmotions) {
-        if (uniqueEmotions.hasOwnProperty(emotion)) {
-          if (!emotionsOverTime[emotion]) {
-            emotionsOverTime[emotion] = [];
-          }
-
-          emotionsOverTime[emotion].push({ probability: uniqueEmotions[emotion], timestamp: it.dateCreated });
-        };
-      };
-    });
-
-    return emotionsOverTime;
   };
 
   /**
@@ -100,20 +68,15 @@ class Dashboard extends React.Component {
         // Sort by most recent
         _mostRecentAPICallTimestampData = _mostRecentAPICallTimestampData.sort(function(a, b) { return new Date(b.dateCreated) - new Date(a.dateCreated) });
 
-        // Generate emotions' probabilities queried over time statistic
-        let _emotionsOverTime = temp.generateEmotionProbabilitiesOverTime(_mostRecentAPICallTimestampData);
-
         // Once all done, update state !
-        temp.setState({ APICallTimestamps: _APICallTimestamps, mostRecentAPICallTimestampData: _mostRecentAPICallTimestampData, emotionsOverTime: _emotionsOverTime });
+        temp.setState({ APICallTimestamps: _APICallTimestamps, mostRecentAPICallTimestampData: _mostRecentAPICallTimestampData });
       });
     });
   };
 
   render() {
 
-    const { mostRecentAPICallTimestampData, emotionsOverTime } = this.state;
-    console.log(mostRecentAPICallTimestampData);
-    console.log(emotionsOverTime);
+    const { mostRecentAPICallTimestampData } = this.state;
 
     return (
       <div className='dashboardContent'>
@@ -139,7 +102,7 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div className="column">
-                  Time series plot of Emotion (selectable via Dropdown) queried's probabilities over time (aggregated from most recent 10 API calls)
+                  <TimeSeriesEmotionProbsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
                 </div>
               </div>
             </div>
