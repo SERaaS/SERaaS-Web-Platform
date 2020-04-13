@@ -4,15 +4,15 @@ const exampleCode =
 var fs = require('fs');
 var options = {
   'method': 'POST',
-  'url': 'http://TODO_ADD_URL_HERE/analyse/your-own-unique-user-ID-here',
+  'url': '${window.location.protocol}//${window.location.hostname}/analyse/your-own-unique-user-ID-here',
   'headers': {
     'Content-Type': 'application/x-www-form-urlencoded'
   },
   formData: {
     'file': {
-      'value': fs.createReadStream('your-own-audio-file-url-here'),
+      'value': fs.createReadStream('your-own-audio-file-local-url-here'),
       'options': {
-        'filename': 'your-own-audio-file-url-here',
+        'filename': 'your-own-audio-file-local-url-here',
         'contentType': null
       }
     }

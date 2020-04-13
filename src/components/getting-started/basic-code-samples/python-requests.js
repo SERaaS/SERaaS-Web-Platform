@@ -2,11 +2,11 @@ const exampleCode =
 
 `import requests
 
-url = "http://TODO_ADD_URL_HERE/analyse/your-own-unique-user-ID-here"
+url = "${window.location.protocol}//${window.location.hostname}/analyse/your-own-unique-user-ID-here"
 
 payload = {}
 files = [
-  ('file', open('your-own-audio-file-url-here','rb'))
+  ('file', open('your-own-audio-file-local-url-here','rb'))
 ]
 headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
