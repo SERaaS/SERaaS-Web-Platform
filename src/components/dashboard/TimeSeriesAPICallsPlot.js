@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, XAxis, YAxis, CartesianGrid, Line } from 'recharts';
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line } from 'recharts';
 
 class TimeSeriesAPICallsPlot extends React.Component {
 
@@ -69,6 +69,8 @@ class TimeSeriesAPICallsPlot extends React.Component {
         <LineChart width={500} height={300} data={timeSeriesAPICallsPlot}>
           <XAxis dataKey="hour"/>
           <YAxis/>
+          <Tooltip />
+          <Legend />
           <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
           <Line type="monotone" dataKey="queriesMade" stroke="#8884d8" />
         </LineChart>

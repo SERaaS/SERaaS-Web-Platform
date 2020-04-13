@@ -97,7 +97,7 @@ class EmotionBreakdownPlots extends React.Component {
             selection
             options={dropdownEmotionsListing}
             onChange={this.onEmotionDropdownChange}
-            defaultValue={selectedAPICall}
+            defaultValue={selectedEmotion}
           />
 
           {

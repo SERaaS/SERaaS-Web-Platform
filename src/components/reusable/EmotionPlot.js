@@ -11,12 +11,12 @@ class EmotionPlot extends React.Component {
     if (specifiedPeriod) {
       // Time series plot if timestamps are available
       return outputBody.map(function(emotionObject) {
-        return { name: emotionObject.duration.from, value: emotionObject.probability };
+        return { name: emotionObject.duration.from, probability: emotionObject.probability };
       });
 
     } else {
       return outputBody.map(function(emotionObject, i) {
-        return { name: `${emotionObject.emotion} ${i + 1}`, value: emotionObject.probability };
+        return { name: `${emotionObject.emotion} ${i + 1}`, probability: emotionObject.probability };
       });
     };
   };
@@ -44,7 +44,7 @@ class EmotionPlot extends React.Component {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" stroke="#8884d8" />
+          <Line type="monotone" dataKey="probability" stroke="#8884d8" />
         </LineChart>
       )
     }
