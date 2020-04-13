@@ -11,8 +11,12 @@ class UsingAPITutorial extends React.Component {
         <p>The SERaaS product is the singular API endpoint that any registered SERaaS
         user can have access to. The highlighted input query parameters of the API endpoint are defined below.</p>
 
+        <p>It is required that the audio file must be sent as a POST form-data key-value pair, where its key is named
+          as <span className="highlight">file</span>. Note that when sending in the audio file, the length
+          should be no more than 10 seconds to allow for a sufficient response time from SERaaS for processing.</p>
+
         {/* API Endpoint URL */}
-        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>TODO_ADD_URL_HERE/analyse/<span className="highlight">userId</span>/<span className="highlight">emotions</span>/<span className="highlight">period</span></span></h3>
+        <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>{ `${window.location.protocol}//${window.location.hostname}` }/analyse/<span className="highlight">userId</span>/<span className="highlight">emotions</span>/<span className="highlight">period</span></span></h3>
 
         {/* Input Parameters */}
         <h5>Input Query Parameters</h5>
@@ -34,13 +38,13 @@ class UsingAPITutorial extends React.Component {
             </tr>
             <tr className="">
               <td className="">emotions</td>
-              <td className="">These are the list of emotions you would like to examine from your audio file<br /><span className="lowerCase">e.g. <b>TODO_ADD_URL_HERE/analyse/{userId}/angry,happy</b> would output both the angry and happy emotion statistics.</span></td>
+              <td className="">These are the list of emotions you would like to examine from your audio file<br /><span className="lowerCase">e.g. <b>/analyse/{userId}/angry,happy</b> would output both the angry and happy emotion statistics.</span></td>
               <td>Yes</td>
               <td className="">all, neutral, calm, happy, sad, angry, fearful, disgusted, surprised<br /><span className="lowerCase"><b>String</b></span></td>
             </tr>
             <tr className="">
               <td className="">period</td>
-              <td className="">If specified, breaks down the audio file into smaller audio file chunks for the interval given, and analyses each individually<br /><span className="lowerCase">e.g. <b>TODO_ADD_URL_HERE/analyse/{userId}/all/2</b> would output all the emotional statistics for every 2 seconds of the audio file.</span></td>
+              <td className="">If specified, breaks down the audio file into smaller audio file chunks for the interval given, and analyses each individually<br /><span className="lowerCase">e.g. <b>{ `${window.location.protocol}//${window.location.hostname}` }/analyse/{userId}/all/2</b> would output all the emotional statistics for every 2 seconds of the audio file.</span></td>
               <td>No</td>
               <td className="">1 -> Length of Audio File (in seconds)<br /><span className="lowerCase"><b>Integer</b></span></td>
             </tr>
