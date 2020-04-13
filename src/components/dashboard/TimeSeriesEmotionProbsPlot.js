@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line } from 'recharts';
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
 class TimeSeriesEmotionProbsPlot extends React.Component {
 
@@ -134,14 +134,18 @@ class TimeSeriesEmotionProbsPlot extends React.Component {
           {
             selectedEmotion !== null ?
           
-            <LineChart width={500} height={300} data={timeSeriesEmotionProbsPlot[selectedEmotion]}>
-              <XAxis dataKey="hour"/>
-              <YAxis/>
-              <Tooltip />
-              <Legend />
-              <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
-              <Line type="monotone" dataKey="probability" stroke="#8884d8" />
-            </LineChart>
+            <ResponsiveContainer width="95%" height={300}>
+              <LineChart data={timeSeriesEmotionProbsPlot[selectedEmotion]}
+                margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
+
+                <XAxis dataKey="hour"/>
+                <YAxis/>
+                <Tooltip />
+                <Legend />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+                <Line type="monotone" dataKey="probability" stroke="#8884d8" />
+              </LineChart>
+            </ResponsiveContainer>
 
             : ""
           }

@@ -86,26 +86,19 @@ class Dashboard extends React.Component {
           </div>
       
           <main className="mainContent">
-            <div className="ui equal width center aligned padded grid">
-              <div className="row">
-                <div className="column">
-                  <TableAPICallToTimestamps mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
-                </div>
+            <TableAPICallToTimestamps mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
+            
+            <div class="ui divider"></div>
 
-                <div className="column">
-                  <TimeSeriesAPICallsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
-                </div>
-              </div>
-              <div className="row">
-                <div className="column">
-                  <EmotionBreakdownPlots mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
-                </div>
+            <TimeSeriesAPICallsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
 
-                <div className="column">
-                  <TimeSeriesEmotionProbsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} />
-                </div>
-              </div>
-            </div>
+            <div class="ui divider"></div>
+
+            <TimeSeriesEmotionProbsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
+          
+            <div class="ui divider"></div>
+
+            <EmotionBreakdownPlots mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
           </main>
         </div>
       </div>
