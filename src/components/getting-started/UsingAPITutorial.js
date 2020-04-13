@@ -11,6 +11,10 @@ class UsingAPITutorial extends React.Component {
         <p>The SERaaS product is the singular API endpoint that any registered SERaaS
         user can have access to. The highlighted input query parameters of the API endpoint are defined below.</p>
 
+        <p>It is required that the audio file must be sent as a POST form-data key-value pair, where its key is named
+          as <span className="highlight">file</span>. Note that when sending in the audio file, the length
+          should be no more than 10 seconds to allow for a sufficient response time from SERaaS for processing.</p>
+
         {/* API Endpoint URL */}
         <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>{ `${window.location.protocol}//${window.location.hostname}` }/analyse/<span className="highlight">userId</span>/<span className="highlight">emotions</span>/<span className="highlight">period</span></span></h3>
 
