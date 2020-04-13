@@ -18,7 +18,15 @@ function setCurrentSession(userId) {
   localStorage.setItem(CURRENT_USER_SESSION_CACHE_KEY, userId);
 }
 
+/**
+ * Removes the current session user.
+ */
+function removeCurrentSession() {
+  localStorage.removeItem(CURRENT_USER_SESSION_CACHE_KEY);
+}
+
 export default {
   getCurrentSession: getCurrentSession,
-  setCurrentSession: setCurrentSession
+  setCurrentSession: setCurrentSession,
+  removeCurrentSession: removeCurrentSession
 };

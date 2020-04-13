@@ -5,9 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  opacity: 95%;
+
+  /* Background image */
+  background-image: url('./assets/background.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Light grey highlights for important text */
+.highlight {
+  background-color: lightgrey;
+}
+
+/* Lower sized text for unimportant sentences */
+.lowerCase {
+  font-size: x-small;
 }

@@ -10,8 +10,16 @@
 // https://www.npmjs.com/package/axios
 import axios from 'axios';
 
-// Wrapper for User Management Service endpoint URLs
+// Wrapper for main API and User Management Service endpoint URLs
+import apiManagementURLS from './apiManagementURLS';
 import userManagementURLS from './userManagementURLS';
+
+/**
+ * API endpoint to output emotions from a given audio file.
+ */
+function query(audioFile, userId, emotions, period) {
+  return axios.post(apiManagementURLS.query(userId, emotions, period), audioFile, { headers: { 'Content-Type': 'multipart/form-data' } });
+};
 
 /**
  * API endpoint to register a SERaaS user account in the 
@@ -29,7 +37,26 @@ function login(username, password) {
   return axios.post(userManagementURLS.login(), { username, password });
 };
 
+/**
+ * API endpoint to get a list of all of the recent API Calls'
+ * timestamps made by the user in the User Management Service.
+ */
+function getAPICallTimestamps(userId) {
+  return axios.get(userManagementURLS.getAPICallTimestamps(userId));
+};
+
+/**
+ * API endpoint to get an individual API Call timestamp's metadata
+ * made by the user from the User Management Service.
+ */
+function getAPICallTimestampData(userId, timestampId) {
+  return axios.get(userManagementURLS.getAPICallTimestampData(userId, timestampId));
+};
+
 export default {
+  query: query,
   register: register,
-  login: login
+  login: login,
+  getAPICallTimestamps: getAPICallTimestamps,
+  getAPICallTimestampData: getAPICallTimestampData
 };
