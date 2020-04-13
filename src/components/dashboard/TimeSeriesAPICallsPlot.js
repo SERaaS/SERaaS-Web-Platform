@@ -58,28 +58,38 @@ class TimeSeriesAPICallsPlot extends React.Component {
       temp = this;
 
     let timeSeriesAPICallsPlot = [];
+    
     if (mostRecentAPICallTimestampData.length > 0) {
       timeSeriesAPICallsPlot = temp.buildTimeSeriesAPICallsPlot(temp, mostRecentAPICallTimestampData);
+    
+      return (
+        <div>
+          <h3>API Calls Made Over The Last 24 Hours</h3>
+  
+          <ResponsiveContainer width="95%" height={300}>
+            <LineChart data={timeSeriesAPICallsPlot}
+              margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
+              
+              <XAxis dataKey="hour"/>
+              <YAxis/>
+              <Tooltip />
+              <Legend />
+              <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+              <Line type="monotone" dataKey="queriesMade" stroke="#8884d8" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      );
+    } else {
+
+      return (
+        <div>
+          <h3>API Calls Made Over The Last 24 Hours</h3>
+
+          <p>No API Calls made to show.</p>
+        </div>
+      )
     };
-
-    return (
-      <div>
-        <h3>API Calls Made Over The Last 24 Hours</h3>
-
-        <ResponsiveContainer width="95%" height={300}>
-          <LineChart data={timeSeriesAPICallsPlot}
-            margin={{ top: 30, right: 30, left: 20, bottom: 5 }}>
-            
-            <XAxis dataKey="hour"/>
-            <YAxis/>
-            <Tooltip />
-            <Legend />
-            <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
-            <Line type="monotone" dataKey="queriesMade" stroke="#8884d8" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    );
   };
 };
 

@@ -71,44 +71,54 @@ class EmotionBreakdownPlots extends React.Component {
     let dropdownAPICallsListing = [],
       dropdownEmotionsListing = [],
       foundAPICall = null;
+
     if (mostRecentAPICallTimestampData.length > 0) {
       dropdownAPICallsListing = temp.buildDropdownAPICallsListing(temp, mostRecentAPICallTimestampData);
       foundAPICall = mostRecentAPICallTimestampData.find(function(it) { return it._id === selectedAPICall });
 
       dropdownEmotionsListing = temp.buildDropdownEmotionsListing(temp, foundAPICall, selectedAPICall);
-    };
     
-    return (
-      <div>
+      return (
+        <div>
+            <h3>Plot of Emotions for an API Call</h3>
+  
+            <h5>Select API Call To Plot</h5>
+            <Dropdown
+              placeholder="Select API Call"
+              selection
+              options={dropdownAPICallsListing}
+              onChange={this.onAPICallDropdownChange}
+              defaultValue={selectedAPICall}
+            />
+  
+            <h5>Select Emotion To Plot</h5>
+            <Dropdown
+              placeholder="Plot Emotion"
+              selection
+              options={dropdownEmotionsListing}
+              onChange={this.onEmotionDropdownChange}
+              defaultValue={selectedEmotion}
+            />
+  
+            {
+              (foundAPICall !== null && selectedEmotion !== null) ?
+  
+              <EmotionPlot emotion={selectedEmotion} outputBody={foundAPICall.output} selectedAPICall={foundAPICall.paramPeriodicQuery !== -1} />
+  
+              : ""
+            }
+        </div>
+      );
+    } else {
+
+      return (
+        <div>
           <h3>Plot of Emotions for an API Call</h3>
 
-          <h5>Select API Call To Plot</h5>
-          <Dropdown
-            placeholder="Select API Call"
-            selection
-            options={dropdownAPICallsListing}
-            onChange={this.onAPICallDropdownChange}
-            defaultValue={selectedAPICall}
-          />
-
-          <h5>Select Emotion To Plot</h5>
-          <Dropdown
-            placeholder="Plot Emotion"
-            selection
-            options={dropdownEmotionsListing}
-            onChange={this.onEmotionDropdownChange}
-            defaultValue={selectedEmotion}
-          />
-
-          {
-            (foundAPICall !== null && selectedEmotion !== null) ?
-
-            <EmotionPlot emotion={selectedEmotion} outputBody={foundAPICall.output} selectedAPICall={foundAPICall.paramPeriodicQuery !== -1} />
-
-            : ""
-          }
-      </div>
-    );
+          <p>No API Calls made to show.</p>
+        </div>
+      );
+    };
   };
 };
 

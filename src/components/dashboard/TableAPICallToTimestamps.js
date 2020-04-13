@@ -65,21 +65,29 @@ class TableAPIToTimestamps extends React.Component {
     const { mostRecentAPICallTimestampData } = this.props,
       temp = this;
 
-    let tableAPICallToTimestamps = []
+    let tableAPICallToTimestamps = [];
+
     if (mostRecentAPICallTimestampData.length > 0) {
       tableAPICallToTimestamps = temp.buildTableAPICallToTimestamps(temp, mostRecentAPICallTimestampData);
-    };
+    
+      return (
+        <table className="ui celled striped table">
+          <thead className="">
+            <tr className=""><th colSpan="3" className="">Recent API Calls</th></tr>
+          </thead>
+          <tbody className="">
+            { tableAPICallToTimestamps }
+          </tbody>
+        </table>
+      );
+    } else {
 
-    return (
-      <table className="ui celled striped table">
-        <thead className="">
-          <tr className=""><th colSpan="3" className="">Recent API Calls</th></tr>
-        </thead>
-        <tbody className="">
-          { tableAPICallToTimestamps }
-        </tbody>
-      </table>
-    );
+      return (
+        <p>
+          <br />No API Calls made to show.
+        </p>
+      )
+    };
   };
 };
 
