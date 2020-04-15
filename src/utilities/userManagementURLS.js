@@ -1,20 +1,18 @@
 /**
  * Wraps User Management Service API URLs that authenticationUtils
  * uses to build their API calls.
- * 
- * This is used as the URLs will change during usage in development
- * and production.
  */
 
-const PORT = 4000;
-const HOST = 'localhost'
+// Accessing the current host of this Web Platform
+const loc = window.location,
+  PORT = 4000;
 
 /**
  * API endpoint to register a SERaaS user account in the 
  * User Management Service.
  */
 function register() {
-  return `http://${HOST}:${PORT}/authentication/register`;
+  return `${loc.protocol}//${loc.hostname}:${PORT}/authentication/register`;
 };
 
 /**
@@ -22,7 +20,7 @@ function register() {
  * a SERaaS user account in the User Management Service.
  */
 function login() {
-  return `http://${HOST}:${PORT}/authentication/login`;
+  return `${loc.protocol}//${loc.hostname}:${PORT}/authentication/login`;
 };
 
 /**
@@ -30,7 +28,7 @@ function login() {
  * timestamps made by the user from the User Management Service.
  */
 function getAPICallTimestamps(userId) {
-  return `http://${HOST}:${PORT}/authentication/data/${userId}`;
+  return `${loc.protocol}//${loc.hostname}:${PORT}/authentication/data/${userId}`;
 };
 
 /**
@@ -38,7 +36,7 @@ function getAPICallTimestamps(userId) {
  * made by the user from the User Management Service.
  */
 function getAPICallTimestampData(userId, timestampId) {
-  return `http://${HOST}:${PORT}/authentication/data/${userId}/${timestampId}`;
+  return `${loc.protocol}//${loc.hostname}:${PORT}/authentication/data/${userId}/${timestampId}`;
 };
 
 export default {
