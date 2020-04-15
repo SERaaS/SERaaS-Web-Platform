@@ -88,15 +88,15 @@ class Dashboard extends React.Component {
           <main className="mainContent">
             <TableAPICallToTimestamps mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
             
-            <div class="ui divider"></div>
+            <div className="ui divider"></div>
 
             <TimeSeriesAPICallsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
 
-            <div class="ui divider"></div>
+            <div className="ui divider"></div>
 
             <TimeSeriesEmotionProbsPlot mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
           
-            <div class="ui divider"></div>
+            <div className="ui divider"></div>
 
             <EmotionBreakdownPlots mostRecentAPICallTimestampData={mostRecentAPICallTimestampData} style={{ marginTop: "20px" }} />
           </main>
