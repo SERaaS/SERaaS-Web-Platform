@@ -37,7 +37,7 @@ class MakeSampleAPICall extends React.Component {
    * Sets the currently selected period for the sample API call.
    */
   onInputPeriodChange = (event) => {
-    this.setState({ APICallInputParameters: { ...this.state.APICallInputParameters, specifiedPeriod: event.target.value } });
+    this.setState({ APICallInputParameters: { ...this.state.APICallInputParameters, specifiedPeriod: Number(event.target.value) } });
   };
 
   /**
@@ -66,7 +66,7 @@ class MakeSampleAPICall extends React.Component {
 
     const { APICallInputParameters } = this.state;
     let specifiedPeriod = APICallInputParameters.specifiedPeriod;
-    specifiedPeriod = specifiedPeriod  === 0 ? null : specifiedPeriod;
+    specifiedPeriod = specifiedPeriod === 0 ? null : specifiedPeriod;
 
     // Required for accessing "this" functions after API call
     const temp = this;
@@ -118,10 +118,28 @@ class MakeSampleAPICall extends React.Component {
     let selectedEmotionsString = selectedEmotions.length === 0 ? "all" : selectedEmotions.join(),
       plotableEmotions = this.getPlotableEmotions(selectedEmotions);
 
+    // Building up the API Endpoint URL to show based on the input parameters
+    const APIEndpointURL = (      
+      <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>
+        POST
+        <span style={{ marginLeft: "30px" }}>
+          { `${window.location.protocol}//${window.location.hostname}` }
+          /
+          analyse
+          /
+          <span className="highlight">{this.props.userId}</span>
+          /
+          <span className="highlight">{selectedEmotionsString}</span>
+          /
+          {/* Doesn't show period query if period=0 */}
+          { APICallInputParameters.specifiedPeriod > 0 ? <span className="highlight">{APICallInputParameters.specifiedPeriod}</span> : "" }
+        </span>
+      </h3>
+    );
+
     return (
-      <div>
-        {/* API Endpoint URL */}  
-    <h3 style={{ border: "dashed", padding: "10px", borderRadius: "10px" }}>POST <span style={{ marginLeft: "30px" }}>{ `${window.location.protocol}//${window.location.hostname}` }/analyse/<span className="highlight">{this.props.userId}</span>/<span className="highlight">{selectedEmotionsString}</span>/<span className="highlight">{APICallInputParameters.specifiedPeriod}</span></span></h3>
+      <div>  
+        { APIEndpointURL }
 
         {
           !didAPICall ? 
