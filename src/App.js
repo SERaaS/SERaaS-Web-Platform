@@ -8,7 +8,6 @@ import {
 import MenuHeading from './components/reusable/MenuHeading';
 import MenuNavBar from './components/reusable/MenuNavBar';
 import Footer from './components/reusable/Footer';
-import NotFound from './components/NotFound';
 import Dashboard from './components/Dashboard';
 import LoginPage from './components/LoginPage';
 import GettingStarted from './components/GettingStarted';

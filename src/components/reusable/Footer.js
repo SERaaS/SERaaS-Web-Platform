@@ -17,6 +17,7 @@ class Footer extends React.Component {
               <img
                 src="https://avatars1.githubusercontent.com/u/20683479?s=460&u=6f85e6c6af9f8403a032439cd577b864a13cf667&v=4"
                 className="ui avatar image"
+                alt=""
               />
               <div className="content">
                 <a className="header" href="https://github.com/andyAndyA">Wei Kit Wong</a>

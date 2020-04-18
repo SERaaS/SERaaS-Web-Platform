@@ -1,7 +1,7 @@
 import React from 'react';
 import APIUtils from '../../utilities/APIUtils';
 
-import { Dropdown, Progress, Message } from 'semantic-ui-react'
+import { Dropdown, Progress } from 'semantic-ui-react'
 import EmotionPlot from '../reusable/EmotionPlot';
 
 class MakeSampleAPICall extends React.Component {
@@ -15,7 +15,7 @@ class MakeSampleAPICall extends React.Component {
       specifiedPeriod: 0
     };
 
-    this.EMOTIONS_AVAILABLE = [ 'neutral', 'calm', 'happy', 'sad', 'angry', 'fearful', 'disgusted', 'surprised' ];
+    this.EMOTIONS_AVAILABLE = [ 'neutral', 'calm', 'happy', 'sad', 'angry', 'fearful', 'disgust', 'surprised' ];
 
     this.state = {
       // Storing current file being selected for sample API call
@@ -124,9 +124,7 @@ class MakeSampleAPICall extends React.Component {
         POST
         <span style={{ marginLeft: "30px" }}>
           { `${window.location.protocol}//${window.location.hostname}` }
-          /
-          analyse
-          /
+          /analyse/
           <span className="highlight">{this.props.userId}</span>
           /
           <span className="highlight">{selectedEmotionsString}</span>

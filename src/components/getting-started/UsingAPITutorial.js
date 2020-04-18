@@ -38,9 +38,9 @@ class UsingAPITutorial extends React.Component {
             </tr>
             <tr className="">
               <td className="">emotions</td>
-              <td className="">These are the list of emotions you would like to examine from your audio file<br /><span className="lowerCase">e.g. <b>/analyse/{userId}/angry,happy</b> would output both the angry and happy emotion statistics.</span></td>
+              <td className="">These are the list of emotions you would like to examine from your audio file. Note that you can't analyse just a specific emotion, only all or multiple.<br /><span className="lowerCase">e.g. <b>/analyse/{userId}/angry,happy</b> would output both the angry and happy emotion statistics.</span></td>
               <td>Yes</td>
-              <td className="">all, neutral, calm, happy, sad, angry, fearful, disgusted, surprised<br /><span className="lowerCase"><b>String</b></span></td>
+              <td className="">all, neutral, calm, happy, sad, angry, fearful, disgust, surprised<br /><span className="lowerCase"><b>String</b></span></td>
             </tr>
             <tr className="">
               <td className="">period</td>
@@ -67,11 +67,11 @@ class UsingAPITutorial extends React.Component {
             <tr className="">
               <td className="">emotion</td>
               <td className="">The emotion analysed from the file. For each emotion queried, a separate emotion object is made for it.<br /><span className="lowerCase">e.g. <b>happy</b> means that the current emotion being analysed is happiness.</span></td>
-              <td className="">neutral, calm, happy, sad, angry, fearful, disgusted, surprised<br /><span className="lowerCase"><b>String</b></span></td>
+              <td className="">neutral, calm, happy, sad, angry, fearful, disgust, surprised<br /><span className="lowerCase"><b>String</b></span></td>
             </tr>
             <tr className="">
               <td className="">probability</td>
-              <td className="">How much of the emotion was shown from the file; this is the emotional statistic percentage.<br /><span className="lowerCase">e.g. <b>72</b> means that the audio file is highly correlated with the emotion being analysed.</span></td>
+              <td className="">How much of the emotion was shown from the file compared to the others; this is the emotional statistic percentage.<br /><span className="lowerCase">e.g. <b>72</b> means that the audio file is highly correlated with the emotion being analysed.</span></td>
               <td className="">0 -> 100<br /><span className="lowerCase"><b>Integer</b></span></td>
             </tr>
             <tr className="">

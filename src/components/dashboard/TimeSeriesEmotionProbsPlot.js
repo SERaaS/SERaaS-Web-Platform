@@ -6,9 +6,7 @@ class TimeSeriesEmotionProbsPlot extends React.Component {
 
   constructor(props) {
     super(props);
-  
-    this.EMOTIONS_AVAILABLE = [ 'neutral', 'calm', 'happy', 'sad', 'angry', 'fearful', 'disgusted', 'surprised' ];
-  
+    
     this.state = {
 
       // Storing the currently selected emotion to plot

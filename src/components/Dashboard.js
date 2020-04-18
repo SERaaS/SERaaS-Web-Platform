@@ -21,8 +21,6 @@ class Dashboard extends React.Component {
       this.props.history.push('/auth');
     };
 
-    this.EMOTIONS_AVAILABLE = [ 'neutral', 'calm', 'happy', 'sad', 'angry', 'fearful', 'disgusted', 'surprised' ];
-
     this.state = {
       userId: userSession,
 

@@ -9,7 +9,7 @@ class MenuHeading extends React.Component {
       <div className="menuHeading">
         <div className="ui segment">
           <h1 className="ui title">
-            <img src={logo} width={40} style={{ marginRight: "10px", float: "left" }} />
+            <img src={logo} width={40} alt="" style={{ marginRight: "10px", float: "left" }} />
             Speech Emotion Recognition as a Service
           </h1>
         </div>
